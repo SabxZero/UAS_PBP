@@ -1,0 +1,38 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+// Define User table
+model User {
+  id       Int      @id @default(autoincrement())
+  username String
+  password String
+  name     String
+  token    String
+
+  @@map(name: "user") // Optional: customize table name
+}
+
+// Define MenuMakanan table
+model MenuMakanan {
+  id              Int      @id @default(autoincrement())
+  namaMakanan     String
+  jenisMakanan    String
+  pembuatMakanan  String
+  namaRestoran    String
+  waktuPembuatan  DateTime
+
+  @@map(name: "menu_makanan") // Optional: customize table name
+}
+
+// Configuring MySQL
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") // Update this with your MySQL connection string
+}
+
+// Configuration for Prisma Client
+// ...
